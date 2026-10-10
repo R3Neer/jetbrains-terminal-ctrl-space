@@ -1,0 +1,8 @@
+Terminal Ctrl+Space (ConPTY) is adapted from:
+https://github.com/thewoolleyman/jetbrains-terminal-kitty-keys
+Author: thewoolleyman
+Pinned commit: 1dbf379846ac1e84bf457d8e31b2f2cf3d070500
+The upstream README declares its License as "MIT". No separate license or
+copyright file is present in that checkout. This notice preserves attribution.
+Changes: Ctrl+Space Win32 encoder; strict input focus; no cross-session fallback;
+ConPTY opt-in and diagnostics settings; routing tests; Windows build script.

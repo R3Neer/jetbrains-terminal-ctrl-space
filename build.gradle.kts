@@ -22,7 +22,8 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdea(providers.gradleProperty("platformVersion"))
+        val sdk = providers.gradleProperty("platformLocalPath")
+        if (sdk.isPresent) local(sdk.get()) else intellijIdea(providers.gradleProperty("platformVersion"))
         bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
         testFramework(TestFrameworkType.Platform)
     }
@@ -75,3 +76,9 @@ intellijPlatform {
         }
     }
 }
+
+
+
+// The upstream workaround writes the test agent under .intellijPlatform.
+// Declare ordering for its other consumer when test and buildPlugin are batched.
+tasks.named("prepareJarSearchableOptions") { mustRunAfter(replaceCoroutinesAgent) }
